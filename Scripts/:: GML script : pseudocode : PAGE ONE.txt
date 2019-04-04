@@ -1,0 +1,35 @@
+// GML script / pseudocode for Retrogrde video game
+// PAGE ONE:
+
+
+// Player Movement...
+// Left And Right
+1)  if(keyboard_check(vk_right)) x = x + 4; // (Activate running animation)
+2)  if(keyboard_check(vk_left)) x = x - 4; // (Activate running animation)
+
+// Jumping and Crouching
+1)  if(keyboard(vk_up)) y = y + 4; // Player will jump and stay airborn for x amount of seconds(Activate jumping animation);
+2)  if(keyboard(vk_down)) y = y - 4; // Player will crouch(Activate crouching animation);
+
+
+// Main Triggers...
+// Objects instantiate when player moves from one room to the other
+1)  if(Player moves from one room to the other) room_instance_add(ind, x, y, obj); 
+     x = x - 7;
+     // This function can add an instance into any room except for the current one.
+        Then object moves negative x units relative to the position it originated from
+
+// Fire bullet on key command
+2)  direction = point_direction(x, y, mouse_x, mouse_y);
+    image_angle = direction;
+     Mouse Global Left Pressed event:
+      with (instance_create(x, y, obj_bullet)) {
+       direction = other.direction;
+       image_angle = direction;
+       speed = 5;
+    }
+
+// Enemy destroy when bullet makes contact
+1)  if(bullet collides with object) instance_destroy(object);
+     // once player fires bullet and it collides with object, the object will be
+        destroyed from room unless the game reloads
