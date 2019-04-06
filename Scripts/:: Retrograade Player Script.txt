@@ -1,0 +1,19 @@
+// Retrograde Player Script...
+
+// Player Movement: Left and Right
+if(keyboard_check(vk_right)) x = x + 4;
+if(keyboard_check(vk_left)) x = x - 4;
+
+// Player Movement: Climbing ladder
+if(keyboard_check(vk_p)) y = y + 4;
+if(keyboard_check(vk_l)) y = y - 4;
+
+// Player Action: Fire Blaster
+direction = point_direction(x, y, mouse_x, mouse_y);
+ image_angle = direction;
+  Mouse Global Left Pressed event:
+   with(instance_create(x, y, obj_bullet)) {
+    direction = other.direction;
+     speed = 5;
+   }
+
